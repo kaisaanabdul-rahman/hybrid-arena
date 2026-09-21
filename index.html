@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050614" />
+  <title>Hybrid Arena — 1-on-1 with Kaisaan Abdul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#050614; --bg-card:#101328; --line:#252a4a; --line-strong:#343a68; --text:#f3f6ff; --muted:#a7b0d4; --faint:#6e7698; --accent:#4ec2ff; --accent-2:#7b5cff; --accent-hot:#79d4ff; --accent-dim:rgba(78,194,255,.16); --accent-glow:rgba(78,194,255,.42); --violet-glow:rgba(123,92,255,.38); --ok:#3dd68c; --err:#ff6b7a; --radius:14px; --font-display:"Bebas Neue",Impact,sans-serif; --font-body:Inter,system-ui,sans-serif; --max:560px; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%}
+    html{background:var(--bg)}
+    body{font-family:var(--font-body);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;background:radial-gradient(900px 480px at 50% -60px,rgba(78,194,255,.22),transparent 58%),radial-gradient(700px 420px at 100% 10%,rgba(123,92,255,.2),transparent 50%),var(--bg)}
+    body::before{content:"";pointer-events:none;position:fixed;inset:0;background-image:linear-gradient(115deg,transparent 40%,rgba(78,194,255,.05) 50%,transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:100% 100%,48px 48px,48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 18%,transparent 78%);z-index:0}
+    .wrap{position:relative;z-index:1;width:min(100%,var(--max));margin:0 auto;padding:28px 20px 64px}
+    .brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+    .mark{display:flex;align-items:center;gap:10px}
+    .mark-logo,.hero-logo{display:block;flex-shrink:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 40%,#1a1f4a 0%,#050614 70%)}
+    .mark-logo{width:48px;height:48px;box-shadow:0 0 22px var(--accent-glow)}
+    .hero-logo{width:min(220px,58vw);height:min(220px,58vw);margin:4px auto 18px;box-shadow:0 0 48px var(--violet-glow),0 0 28px var(--accent-glow)}
+    .mark-logo svg,.hero-logo svg{width:100%;height:100%;display:block}
+    .sprite{position:absolute;width:0;height:0;overflow:hidden}
+    .mark-name{font-family:var(--font-display);font-size:22px;letter-spacing:.16em;line-height:1}
+    .mark-sub{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-top:3px}
+    .pill{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(78,194,255,.45);background:var(--accent-dim);padding:5px 9px;border-radius:999px;white-space:nowrap}
+    h1{font-family:var(--font-display);font-size:clamp(42px,12vw,64px);line-height:.9;letter-spacing:.02em;margin:0 0 12px}
+    h1 .accent{background:linear-gradient(90deg,var(--accent-hot),#c5b8ff 55%,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lede{color:var(--muted);font-size:15px;max-width:40ch}
+    .gate-intro{margin-bottom:28px}
+    .gate-kicker{color:var(--accent);font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+    form.intake{display:grid;gap:16px;background:linear-gradient(180deg,rgba(16,19,40,.94),rgba(8,10,24,.94));border:1px solid var(--line);border-radius:var(--radius);padding:20px 16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+    .field{display:grid;gap:6px}
+    label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#d0d0d6}
+    label .req{color:var(--accent)}
+    input,textarea,select{width:100%;font:inherit;color:var(--text);background:#080a18;border:1px solid var(--line-strong);border-radius:10px;padding:13px 12px;outline:none;appearance:none;-webkit-appearance:none}
+    textarea{min-height:96px;resize:vertical}
+    select{background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:36px;cursor:pointer}
+    select option{background:#0b0d1c;color:#fff}
+    input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+    input[aria-invalid="true"],textarea[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--err)}
+    .error{color:var(--err);display:none;font-size:12px}
+    .error.show{display:block}
+    .submit,.cta{width:100%;border:0;cursor:pointer;font-family:var(--font-display);font-size:22px;letter-spacing:.12em;padding:14px 16px;border-radius:10px;color:#fff;background:linear-gradient(100deg,#3aa8ff 0%,#5b6dff 48%,#8a5cff 100%);box-shadow:0 8px 24px var(--accent-glow);text-decoration:none;display:flex;align-items:center;justify-content:center}
+    .submit:focus-visible,.cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    .form-note,.cta-sub{text-align:center;font-size:11px;color:var(--faint)}
+    #offer[hidden],#gate[hidden]{display:none!important}
+    .offer{animation:rise .45s ease both}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .pos{color:var(--muted);font-size:15.5px;margin-top:10px}
+    .pos strong{color:var(--text)}
+    .card-list{display:grid;gap:12px;margin:22px 0 28px}
+    .card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px 16px}
+    .card h3{font-family:var(--font-display);font-size:22px;letter-spacing:.08em;margin-bottom:10px}
+    .card h3 span{color:var(--accent)}
+    .card ul{list-style:none;display:grid;gap:8px}
+    .card li{position:relative;padding-left:18px;color:var(--muted);font-size:14.5px}
+    .card li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+    .who p{color:var(--muted);font-size:15px}
+    .cta{font-size:24px;letter-spacing:.14em;padding:16px 18px}
+    .cta-sub{margin-top:10px;font-size:12px}
+    .foot{margin-top:36px;text-align:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+    .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ok);color:var(--ok);padding:10px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;z-index:20;transition:opacity .25s,transform .25s}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  </style>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="ha-mark" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="ha-ring" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#4ec2ff"/>
+          <stop offset=".55" stop-color="#7b8cff"/>
+          <stop offset="1" stop-color="#8a5cff"/>
+        </linearGradient>
+        <linearGradient id="ha-letters" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#fff"/>
+          <stop offset="1" stop-color="#7b5cff"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="96" fill="#07091a"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#ha-ring)" stroke-width="3.2"/>
+      <text x="100" y="86" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="44" font-weight="800" fill="url(#ha-letters)">HA</text>
+      <path d="M70 78 C110 92, 130 86, 148 72" fill="none" stroke="url(#ha-ring)" stroke-width="4" stroke-linecap="round"/>
+      <text x="100" y="122" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="22" font-weight="800" fill="#f4f7ff" letter-spacing="2">HYBRID</text>
+      <text x="100" y="142" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" font-weight="700" fill="#4ec2ff" letter-spacing="4">ARENA</text>
+      <text x="100" y="162" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="6.5" font-weight="600" fill="#c9d2f0" letter-spacing="1.6">ATHLETES. ENTREPRENEURS.</text>
+    </symbol>
+  </svg>
+  <div class="wrap">
+    <header class="brand">
+      <div class="mark">
+        <span class="mark-logo" aria-hidden="true"><svg viewBox="0 0 200 200"><use href="#ha-mark"/></svg></span>
+        <div>
+          <div class="mark-name">HYBRID ARENA</div>
+          <div class="mark-sub">Athletes. Entrepreneurs.</div>
+        </div>
+      </div>
+      <span class="pill">1-on-1</span>
+    </header>
+    <section id="gate" aria-labelledby="gate-title">
+      <div class="gate-intro">
+        <div class="hero-logo"><svg viewBox="0 0 200 200"><use href="#ha-mark"/></svg></div>
+        <p class="gate-kicker">Start here</p>
+        <h1 id="gate-title">Apply for<br /><span class="accent">1-on-1</span> training</h1>
+        <p class="lede">Tell Kaisaan what you’re chasing. Submit the intake to unlock coaching details.</p>
+      </div>
+      <form class="intake" id="intake-form" novalidate>
+        <div class="field"><label for="name">Name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required maxlength="80" /><p class="error" id="name-error" role="alert"></p></div>
+        <div class="field"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required /><p class="error" id="email-error" role="alert"></p></div>
+        <div class="field"><label for="age">Age <span class="req">*</span></label><input id="age" name="age" type="number" inputmode="numeric" min="13" max="80" required /><p class="error" id="age-error" role="alert"></p></div>
+        <div class="field"><label for="goals">Goals <span class="req">*</span></label><textarea id="goals" name="goals" required maxlength="800" placeholder="What do you want to achieve?"></textarea><p class="error" id="goals-error" role="alert"></p></div>
+        <div class="field"><label for="hurdle">Biggest hurdle <span class="req">*</span></label><textarea id="hurdle" name="hurdle" required maxlength="800" placeholder="What’s blocking you right now?"></textarea><p class="error" id="hurdle-error" role="alert"></p></div>
+        <div class="field"><label for="interest">Interested in trying <span class="req">*</span></label>
+          <select id="interest" name="interest" required>
+            <option value="" selected disabled>Select one</option>
+            <option value="Calisthenics">Calisthenics</option>
+            <option value="Martial arts">Martial arts</option>
+            <option value="Weight training">Weight training</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+          <p class="error" id="interest-error" role="alert"></p>
+        </div>
+        <button class="submit" type="submit">Submit intake</button>
+        <p class="form-note">All fields required. No spam — this goes to Kaisaan.</p>
+      </form>
+    </section>
+    <section id="offer" class="offer" hidden aria-labelledby="offer-title">
+      <div class="hero-block">
+        <p class="gate-kicker">1-on-1 coaching</p>
+        <h1 id="offer-title">Train with<br /><span class="accent">Kaisaan</span></h1>
+        <p class="pos"><strong>Calisthenics-first hybrid training.</strong> Planche and skill progression as the spine. Lifts as support, not the identity. Real athlete standards — control, strength, and intent under fatigue.</p>
+      </div>
+      <div class="card-list">
+        <article class="card">
+          <h3><span>/</span> WHAT’S INCLUDED</h3>
+          <ul>
+            <li>Custom programming built around your skills and schedule</li>
+            <li>Form cues that actually change how you move</li>
+            <li>Regular check-ins and adjustments — not a PDF dump</li>
+            <li>Clear progression: skills, strength, and work capacity</li>
+          </ul>
+        </article>
+        <article class="card who">
+          <h3><span>/</span> WHO IT’S FOR</h3>
+          <p>Serious athletes who want accountability. If you want a coach who will hold the standard and progress you with intent — gym, rings, and the mat — this is the lane.</p>
+        </article>
+      </div>
+      <div class="cta-row">
+        <a class="cta" id="book-call" href="#">Book a call</a>
+        <p class="cta-sub">Direct to Kaisaan · Hybrid Arena</p>
+      </div>
+    </section>
+    <p class="foot">Hybrid Arena · Athletes. Entrepreneurs.</p>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Intake received. Training unlocked.</div>
+  <script>
+    (function () {
+      var BOOKING_EMAIL = "kaisaanabdul@gmail.com";
+      var BOOKING_SUBJECT = "1-on-1 Training Inquiry";
+      var STORAGE_UNLOCK = "ha_unlocked";
+      var STORAGE_LEADS = "ha_leads";
+      var gate = document.getElementById("gate");
+      var offer = document.getElementById("offer");
+      var form = document.getElementById("intake-form");
+      var toast = document.getElementById("toast");
+      var book = document.getElementById("book-call");
+      book.setAttribute("href", "mailto:" + BOOKING_EMAIL + "?subject=" + encodeURIComponent(BOOKING_SUBJECT));
+      function isUnlocked(){ try { return sessionStorage.getItem(STORAGE_UNLOCK) === "1"; } catch(e){ return false; } }
+      function unlock(opts){ try { sessionStorage.setItem(STORAGE_UNLOCK, "1"); } catch(e){}
+        gate.hidden = true; offer.hidden = false;
+        if (opts && opts.focus) { var heading = document.getElementById("offer-title"); heading.setAttribute("tabindex","-1"); heading.focus(); }
+      }
+      if (isUnlocked()) unlock({focus:false}); else { gate.hidden=false; offer.hidden=true; }
+      var fields = { name:document.getElementById("name"), email:document.getElementById("email"), age:document.getElementById("age"), goals:document.getElementById("goals"), hurdle:document.getElementById("hurdle"), interest:document.getElementById("interest") };
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      function setError(el, message){ var err=document.getElementById(el.id+"-error"); if(message){ el.setAttribute("aria-invalid","true"); err.textContent=message; err.classList.add("show"); } else { el.removeAttribute("aria-invalid"); err.textContent=""; err.classList.remove("show"); } }
+      function validate(){ var ok=true, firstBad=null;
+        var name=fields.name.value.trim(); if(!name){setError(fields.name,"Enter your name.");ok=false;firstBad=firstBad||fields.name;} else if(name.length<2){setError(fields.name,"Name looks too short.");ok=false;firstBad=firstBad||fields.name;} else setError(fields.name,"");
+        var email=fields.email.value.trim(); if(!email){setError(fields.email,"Enter your email.");ok=false;firstBad=firstBad||fields.email;} else if(!EMAIL_RE.test(email)){setError(fields.email,"Enter a valid email address.");ok=false;firstBad=firstBad||fields.email;} else setError(fields.email,"");
+        var ageRaw=fields.age.value.trim(); var age=Number(ageRaw); if(!ageRaw){setError(fields.age,"Enter your age.");ok=false;firstBad=firstBad||fields.age;} else if(!Number.isFinite(age)||age<13||age>80){setError(fields.age,"Enter an age between 13 and 80.");ok=false;firstBad=firstBad||fields.age;} else setError(fields.age,"");
+        var goals=fields.goals.value.trim(); if(!goals){setError(fields.goals,"Tell Kaisaan what you want to achieve.");ok=false;firstBad=firstBad||fields.goals;} else setError(fields.goals,"");
+        var hurdle=fields.hurdle.value.trim(); if(!hurdle){setError(fields.hurdle,"What’s the biggest thing blocking you?");ok=false;firstBad=firstBad||fields.hurdle;} else setError(fields.hurdle,"");
+        var interest=fields.interest.value; if(!interest){setError(fields.interest,"Select what you want to try.");ok=false;firstBad=firstBad||fields.interest;} else setError(fields.interest,"");
+        return {ok:ok,firstBad:firstBad};
+      }
+      Object.keys(fields).forEach(function(key){ var el=fields[key]; el.addEventListener("input",function(){ if(el.getAttribute("aria-invalid")==="true") validate(); }); el.addEventListener("change",function(){ if(el.getAttribute("aria-invalid")==="true") validate(); }); });
+      function readLeads(){ try { var raw=localStorage.getItem(STORAGE_LEADS); var parsed=raw?JSON.parse(raw):[]; return Array.isArray(parsed)?parsed:[]; } catch(e){ return []; } }
+      function saveLead(lead){ var leads=readLeads(); leads.push(lead); try { localStorage.setItem(STORAGE_LEADS, JSON.stringify(leads)); } catch(e){} }
+      function submitLead(payload){ saveLead(payload); console.log("Hybrid Arena lead", payload); return Promise.resolve({ok:true}); }
+      form.addEventListener("submit", function(e){ e.preventDefault(); var result=validate(); if(!result.ok){ if(result.firstBad) result.firstBad.focus(); return; }
+        var payload={ id:"ha_"+Date.now().toString(36), submittedAt:new Date().toISOString(), source:"hybrid-arena-landing", name:fields.name.value.trim(), email:fields.email.value.trim().toLowerCase(), age:Number(fields.age.value), goals:fields.goals.value.trim(), biggestHurdle:fields.hurdle.value.trim(), interestedIn:fields.interest.value };
+        submitLead(payload).then(function(){ unlock({focus:true}); toast.classList.add("show"); setTimeout(function(){ toast.classList.remove("show"); },2800); window.scrollTo({top:0,behavior:"smooth"}); });
+      });
+    })();
+  </script>
+</body>
+</html>
